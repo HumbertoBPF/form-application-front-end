@@ -1,0 +1,196 @@
+[
+    {
+        "name": "Diabetes",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            },
+            {
+                "id": 3,
+                "text": "Não sei"
+            }
+        ]
+    },
+    {
+        "name": "Problemas Cardíacos",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            },
+            {
+                "id": 4,
+                "text": "Já tive, mas me curei"
+            }
+        ]
+    },
+    {
+        "name": "Pressão Alta",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            },
+            {
+                "id": 3,
+                "text": "Não sei"
+            }
+        ]
+    },
+    {
+        "name": "Asma",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            }
+        ]
+    },
+
+    {
+        "name": "Depressão",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            }
+        ]
+    },
+
+    {
+        "name": "Ansiedade",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            }
+        ]
+    },
+    {
+        "name": "Colesterol Alto",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            },
+            {
+                "id": 3,
+                "text": "Não sei"
+            }
+        ]
+    },
+    {
+        "name": "Dores nas Costas",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            },
+            {
+                "id": 4,
+                "text": "Já tive, mas me curei"
+            }
+        ]
+    },
+    {
+        "name": "Dores nas Articulações",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            },
+            {
+                "id": 4,
+                "text": "Já tive, mas me curei"
+            }
+        ]
+    },
+    {
+        "name": "Dores de Cabeça",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            },
+            {
+                "id": 4,
+                "text": "Já tive, mas me curei"
+            }
+        ]
+    },
+    {
+        "name": "Câncer",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            },
+            {
+                "id": 4,
+                "text": "Já tive, mas me curei"
+            }
+        ]
+    },
+    {
+        "name": "Infecções Sexualmente Transmissíveis",
+        "options": [
+            {
+                "id": 1,
+                "text": "Tenho"
+            },
+            {
+                "id": 2,
+                "text": "Não tenho"
+            },
+            {
+                "id": 4,
+                "text": "Já tive, mas me curei"
+            }
+        ]
+    }
+]
