@@ -2,35 +2,60 @@ import { Accordion, Button, Card, Form } from 'react-bootstrap';
 import states from 'common/states.json';
 import pressureOptions from 'common/pressure-options.json';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-function PersonalData() {
+function PersonalData({ onNext }) {
     const [validated, setValidated] = useState();
+
+    const [fullName, setFullName] = useState('');
+    const [identifier, setIdentifier] = useState('');
+    const [position, setPosition] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [isCorrect, setIsCorrect] = useState(true);
+    const [titularity, setTitularity] = useState('titular');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [birthDate, setBirthDate] = useState('');
+    const [gender, setGender] = useState('male');
+    const [weight, setWeight] = useState('');
+    const [height, setHeight] = useState('');
+    const [minPressure, setMinPressure] = useState('');
+    const [maxPressure, setMaxPressure] = useState('');
+    const [knowPressure, setKnowPressure] = useState(false);
 
     const onSubmit = (event) => {
         event.preventDefault();
+        event.stopPropagation();
 
-        console.log(event.target);
-
-        console.log({
-            full_name: event.target.fullName.value,
-            national_id: event.target.nationalId.value,
-            position: event.target.position.value,
-            city: event.target.city.value,
-            state: event.target.state.value,
-            is_correct: event.target.state.value,
-            titularity: event.target.titularity.value,
-            phone: event.target.phone.value,
-            email: event.target.email.value,
-            birth_date: event.target.birthDate.value,
-            gender: event.target.gender.value,
-            weight: event.target.weight.value,
-            height: event.target.height.value,
-            min_pressure: event.target.minPressure.value,
-            max_pressure: event.target.maxPressure.value,
-            doNotKnow: event.target.doNotKnow.value,
-        });
+        const form = event.currentTarget;
 
         setValidated(true);
+
+        if (form.checkValidity() === false) {
+            return;
+        }
+
+        const data = {
+            full_name: fullName,
+            national_id: identifier,
+            position,
+            city,
+            state,
+            is_correct: isCorrect,
+            titularity,
+            phone,
+            email,
+            birth_date: birthDate,
+            gender,
+            weight,
+            height,
+            min_pressure: minPressure,
+            max_pressure: maxPressure,
+            know_pressure: knowPressure,
+        };
+
+        onNext(data);
     };
 
     return (
@@ -39,10 +64,18 @@ function PersonalData() {
             validated={validated}
             onSubmit={onSubmit}
             className="p-3"
+            method="POST"
         >
             <Form.Group className="mb-3" controlId="full-name">
                 <Form.Label>Nome completo</Form.Label>
-                <Form.Control name="fullName" type="text" required />
+                <Form.Control
+                    data-testid="full-name-input"
+                    name="fullName"
+                    type="text"
+                    onChange={(event) => setFullName(event.target.value)}
+                    value={fullName}
+                    required
+                />
                 <Form.Control.Feedback type="invalid">
                     Esse campo é obrigatório
                 </Form.Control.Feedback>
@@ -50,7 +83,14 @@ function PersonalData() {
 
             <Form.Group className="mb-3" controlId="national-id">
                 <Form.Label>Matrícula/CPF</Form.Label>
-                <Form.Control name="nationalId" type="text" required />
+                <Form.Control
+                    data-testid="document-input"
+                    name="nationalId"
+                    type="text"
+                    onChange={(event) => setIdentifier(event.target.value)}
+                    value={identifier}
+                    required
+                />
                 <Form.Control.Feedback type="invalid">
                     Esse campo é obrigatório
                 </Form.Control.Feedback>
@@ -58,7 +98,14 @@ function PersonalData() {
 
             <Form.Group className="mb-3" controlId="position">
                 <Form.Label>Cargo</Form.Label>
-                <Form.Control name="position" type="text" required />
+                <Form.Control
+                    data-testid="position-input"
+                    name="position"
+                    type="text"
+                    onChange={(event) => setPosition(event.target.value)}
+                    value={position}
+                    required
+                />
                 <Form.Control.Feedback type="invalid">
                     Esse campo é obrigatório
                 </Form.Control.Feedback>
@@ -66,7 +113,14 @@ function PersonalData() {
 
             <Form.Group className="mb-3" controlId="city">
                 <Form.Label>Cidade</Form.Label>
-                <Form.Control name="city" type="text" required />
+                <Form.Control
+                    data-testid="city-input"
+                    name="city"
+                    type="text"
+                    onChange={(event) => setCity(event.target.value)}
+                    value={city}
+                    required
+                />
                 <Form.Control.Feedback type="invalid">
                     Esse campo é obrigatório
                 </Form.Control.Feedback>
@@ -74,7 +128,14 @@ function PersonalData() {
 
             <Form.Group className="mb-3">
                 <Form.Label>Estado</Form.Label>
-                <Form.Select aria-label="Estado" name="state" required>
+                <Form.Select
+                    data-testid="state-select"
+                    aria-label="Estado"
+                    name="state"
+                    onChange={(event) => setState(event.target.value)}
+                    value={state}
+                    required
+                >
                     <option value="">- Nenhum -</option>
                     {states.map((state) => (
                         <option key={state} value={state}>
@@ -93,10 +154,27 @@ function PersonalData() {
                     id="yes"
                     name="isCorrect"
                     type="radio"
+                    onChange={(event) =>
+                        setIsCorrect(event.target.value === 'yes')
+                    }
+                    value="yes"
                     label="Sim"
+                    required
+                    data-testid="yes-check"
                 />
 
-                <Form.Check id="no" name="isCorrect" type="radio" label="Não" />
+                <Form.Check
+                    id="no"
+                    name="isCorrect"
+                    type="radio"
+                    onChange={(event) =>
+                        setIsCorrect(event.target.value === 'yes')
+                    }
+                    value="no"
+                    label="Não"
+                    required
+                    data-testid="no-check"
+                />
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -105,20 +183,35 @@ function PersonalData() {
                     id="titular"
                     name="titularity"
                     type="radio"
+                    onChange={(event) => setTitularity(event.target.value)}
+                    value="titular"
                     label="Titular"
+                    required
+                    data-testid="titular-check"
                 />
 
                 <Form.Check
                     id="dependant"
                     name="titularity"
                     type="radio"
+                    onChange={(event) => setTitularity(event.target.value)}
+                    value="dependant"
                     label="Dependente"
+                    required
+                    data-testid="dependent-check"
                 />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="phone">
                 <Form.Label>Telefone com DDD</Form.Label>
-                <Form.Control name="phone" type="text" required />
+                <Form.Control
+                    name="phone"
+                    type="text"
+                    onChange={(event) => setPhone(event.target.value)}
+                    value={phone}
+                    required
+                    data-testid="phone-input"
+                />
                 <Form.Control.Feedback type="invalid">
                     Esse campo é obrigatório
                 </Form.Control.Feedback>
@@ -126,7 +219,14 @@ function PersonalData() {
 
             <Form.Group className="mb-3" controlId="email">
                 <Form.Label>E-mail</Form.Label>
-                <Form.Control name="email" type="email" required />
+                <Form.Control
+                    name="email"
+                    type="email"
+                    onChange={(event) => setEmail(event.target.value)}
+                    value={email}
+                    required
+                    data-testid="email-input"
+                />
                 <Form.Control.Feedback type="invalid">
                     Insira um e-mail válido
                 </Form.Control.Feedback>
@@ -134,7 +234,14 @@ function PersonalData() {
 
             <Form.Group className="mb-3" controlId="birth-date">
                 <Form.Label>Data de nascimento</Form.Label>
-                <Form.Control name="birthDate" type="date" required />
+                <Form.Control
+                    name="birthDate"
+                    type="date"
+                    required
+                    onChange={(event) => setBirthDate(event.target.value)}
+                    value={birthDate}
+                    data-testid="birth-date-input"
+                />
                 <Form.Control.Feedback type="invalid">
                     Esse campo é obrigatório
                 </Form.Control.Feedback>
@@ -146,20 +253,35 @@ function PersonalData() {
                     id="female"
                     name="gender"
                     type="radio"
+                    onChange={(event) => setGender(event.target.value)}
+                    value="female"
                     label="Feminino"
+                    required
+                    data-testid="female-check"
                 />
 
                 <Form.Check
                     id="male"
                     name="gender"
                     type="radio"
+                    onChange={(event) => setGender(event.target.value)}
+                    value="male"
                     label="Masculino"
+                    required
+                    data-testid="male-check"
                 />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="weight">
                 <Form.Label>Peso</Form.Label>
-                <Form.Control name="weight" type="number" required />
+                <Form.Control
+                    name="weight"
+                    type="number"
+                    onChange={(event) => setWeight(event.target.value)}
+                    value={weight}
+                    required
+                    data-testid="weight-input"
+                />
                 <Form.Control.Feedback type="invalid">
                     Esse campo é obrigatório
                 </Form.Control.Feedback>
@@ -167,7 +289,14 @@ function PersonalData() {
 
             <Form.Group className="mb-3" controlId="height">
                 <Form.Label>Altura (em cm)</Form.Label>
-                <Form.Control name="height" type="number" required />
+                <Form.Control
+                    name="height"
+                    type="number"
+                    onChange={(event) => setHeight(event.target.value)}
+                    value={height}
+                    required
+                    data-testid="height-input"
+                />
                 <Form.Control.Feedback type="invalid">
                     Esse campo é obrigatório
                 </Form.Control.Feedback>
@@ -195,6 +324,11 @@ function PersonalData() {
                                 <Form.Select
                                     name="maxPressure"
                                     aria-label="max-pressure"
+                                    onChange={(event) =>
+                                        setMaxPressure(event.target.value)
+                                    }
+                                    value={maxPressure}
+                                    data-testid="max-pressure-select"
                                 >
                                     <option value="">- Nenhum -</option>
                                     {pressureOptions.map((option) => (
@@ -215,6 +349,11 @@ function PersonalData() {
                                 <Form.Select
                                     name="minPressure"
                                     aria-label="min-pressure"
+                                    onChange={(event) =>
+                                        setMinPressure(event.target.value)
+                                    }
+                                    value={minPressure}
+                                    data-testid="min-pressure-select"
                                 >
                                     <option value="">- Nenhum -</option>
                                     {pressureOptions.map((option) => (
@@ -232,18 +371,30 @@ function PersonalData() {
                                 className="m-3"
                                 id="do-not-know"
                                 name="doNotKnow"
+                                onChange={() => setKnowPressure(!knowPressure)}
+                                value={knowPressure}
                                 label="Não sei"
+                                data-testid="do-not-know-check"
                             />
                         </>
                     </Accordion.Collapse>
                 </Card>
             </Accordion>
 
-            <Button className="mt-3" variant="light" type="submit">
+            <Button
+                className="mt-3"
+                variant="light"
+                type="submit"
+                data-testid="submit-button"
+            >
                 Próximo
             </Button>
         </Form>
     );
 }
+
+PersonalData.propTypes = {
+    onNext: PropTypes.func.isRequired,
+};
 
 export default PersonalData;

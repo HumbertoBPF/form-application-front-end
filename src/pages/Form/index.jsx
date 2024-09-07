@@ -4,6 +4,7 @@ import PersonalData from 'components/PersonalData';
 import { useEffect, useState } from 'react';
 
 function Form() {
+    const [personalData, setPersonalData] = useState({});
     const [step, setStep] = useState(1);
 
     useEffect(() => {
@@ -11,7 +12,15 @@ function Form() {
     }, []);
 
     if (step === 1) {
-        return <PersonalData />;
+        return (
+            <PersonalData
+                onNext={(data) => {
+                    setStep(2);
+                    console.log(personalData);
+                    setPersonalData(data);
+                }}
+            />
+        );
     }
 
     if (step === 2) {
