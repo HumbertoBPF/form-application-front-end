@@ -1,5 +1,6 @@
 [
     {
+        "id": 1,
         "name": "Diabetes",
         "options": [
             {
@@ -17,6 +18,7 @@
         ]
     },
     {
+        "id": 2,
         "name": "Problemas Cardíacos",
         "options": [
             {
@@ -34,6 +36,7 @@
         ]
     },
     {
+        "id": 3,
         "name": "Pressão Alta",
         "options": [
             {
@@ -51,6 +54,7 @@
         ]
     },
     {
+        "id": 4,
         "name": "Asma",
         "options": [
             {
@@ -65,6 +69,7 @@
     },
 
     {
+        "id": 5,
         "name": "Depressão",
         "options": [
             {
@@ -77,8 +82,8 @@
             }
         ]
     },
-
     {
+        "id": 6,
         "name": "Ansiedade",
         "options": [
             {
@@ -92,6 +97,7 @@
         ]
     },
     {
+        "id": 7,
         "name": "Colesterol Alto",
         "options": [
             {
@@ -109,6 +115,7 @@
         ]
     },
     {
+        "id": 8,
         "name": "Dores nas Costas",
         "options": [
             {
@@ -126,6 +133,7 @@
         ]
     },
     {
+        "id": 9,
         "name": "Dores nas Articulações",
         "options": [
             {
@@ -143,6 +151,7 @@
         ]
     },
     {
+        "id": 10,
         "name": "Dores de Cabeça",
         "options": [
             {
@@ -160,6 +169,7 @@
         ]
     },
     {
+        "id": 11,
         "name": "Câncer",
         "options": [
             {
@@ -177,6 +187,7 @@
         ]
     },
     {
+        "id": 12,
         "name": "Infecções Sexualmente Transmissíveis",
         "options": [
             {

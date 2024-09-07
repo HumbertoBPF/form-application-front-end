@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 function Form() {
     const [personalData, setPersonalData] = useState({});
+    const [diseasesData, setDiseasesData] = useState({});
     const [step, setStep] = useState(1);
 
     useEffect(() => {
@@ -24,7 +25,18 @@ function Form() {
     }
 
     if (step === 2) {
-        return <Diseases onPrevious={() => setStep(1)} />;
+        return (
+            <Diseases
+                onPrevious={(data) => {
+                    setStep(1);
+                    console.log(diseasesData);
+                    setDiseasesData(data);
+                }}
+                onNext={() => {
+                    setStep(3);
+                }}
+            />
+        );
     }
 
     return <Diet onPrevious={() => setStep(2)} />;
