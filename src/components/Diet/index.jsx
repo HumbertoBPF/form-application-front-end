@@ -1,15 +1,19 @@
-import api from 'api/http';
 import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import { getAlimentacao } from 'api/endpoints';
 
-function Diet({ onPrevious }) {
+function Diet({ onPrevious, onSubmit }) {
     const [diet, setDiet] = useState({});
+
     const [type, setType] = useState('');
+    const [options, setOptions] = useState([]);
+
+    const [validated, setValidated] = useState(false);
+    const [isInvalid, setIsInvalid] = useState(false);
 
     useEffect(() => {
-        api()
-            .get('/getAlimentacao')
+        getAlimentacao()
             .then((response) => {
                 const { data } = response;
                 setDiet(data);
@@ -22,19 +26,61 @@ function Diet({ onPrevious }) {
 
     const onChange = (event) => {
         setType(event.target.value);
+        setOptions([]);
+    };
+
+    const handleCheck = (event) => {
+        const { value } = event.target;
+
+        if (options.some((option) => option === value)) {
+            setOptions(options.filter((option) => option !== value));
+            return;
+        }
+
+        setOptions([...options, value]);
+    };
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        setValidated(false);
+
+        if (options.length === 0) {
+            setIsInvalid(true);
+            return;
+        }
+
+        setValidated(true);
+
+        const form = event.currentTarget;
+
+        if (form.checkValidity() === false) {
+            return;
+        }
+
+        onSubmit({
+            type,
+            options,
+        });
     };
 
     return (
-        <Form className="p-3">
+        <Form
+            noValidate
+            validated={validated}
+            onSubmit={handleSubmit}
+            className="p-3"
+        >
             <Form.Group className="mb-3">
                 <Form.Label>
                     <strong>Selecione seu tipo de alimentação</strong>
                 </Form.Label>
                 <Form.Select
-                    name="minPressure"
+                    name="diet"
                     value={type}
                     onChange={onChange}
-                    aria-label="min-pressure"
+                    aria-label="Diet"
+                    data-testid="diet-select"
                 >
                     {Object.keys(diet).map((key) => (
                         <option key={key} value={key}>
@@ -57,13 +103,22 @@ function Diet({ onPrevious }) {
                             id={index}
                             name="food"
                             label={item}
+                            onChange={handleCheck}
+                            value={item}
+                            data-testid={`food-${index}`}
+                            isInvalid={isInvalid}
                         />
                     ))}
             </Form.Group>
             <Button className="mt-3" onClick={onPrevious} variant="light">
                 Anterior
             </Button>
-            <Button className="ms-3 mt-3" variant="primary" type="submit">
+            <Button
+                className="ms-3 mt-3"
+                variant="primary"
+                type="submit"
+                data-testid="submit-button"
+            >
                 Enviar
             </Button>
         </Form>
@@ -72,6 +127,7 @@ function Diet({ onPrevious }) {
 
 Diet.propTypes = {
     onPrevious: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
 };
 
 export default Diet;

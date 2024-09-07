@@ -16,6 +16,11 @@
         "react-scripts": "5.0.1",
         "web-vitals": "^4.2.3"
     },
+    "jest": {
+        "transformIgnorePatterns": [
+            "node_modules/(?!axios)/"
+        ]
+    },
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",

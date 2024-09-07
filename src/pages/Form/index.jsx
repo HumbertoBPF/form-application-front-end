@@ -1,23 +1,34 @@
+import api from 'api/http';
 import Diet from 'components/Diet';
 import Diseases from 'components/Diseases';
 import PersonalData from 'components/PersonalData';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function Form() {
     const [personalData, setPersonalData] = useState({});
     const [diseasesData, setDiseasesData] = useState({});
     const [step, setStep] = useState(1);
 
-    useEffect(() => {
-        setStep(3);
-    }, []);
+    const handleSubmit = (data) => {
+        api()
+            .post('/submitFormulario', {
+                page_1: personalData,
+                page_2: diseasesData,
+                page_3: data,
+            })
+            .then(() => {
+                console.log('Form submitted');
+            })
+            .catch(() => {
+                console.log('Error');
+            });
+    };
 
     if (step === 1) {
         return (
             <PersonalData
                 onNext={(data) => {
                     setStep(2);
-                    console.log(personalData);
                     setPersonalData(data);
                 }}
             />
@@ -29,7 +40,6 @@ function Form() {
             <Diseases
                 onPrevious={(data) => {
                     setStep(1);
-                    console.log(diseasesData);
                     setDiseasesData(data);
                 }}
                 onNext={() => {
@@ -39,7 +49,7 @@ function Form() {
         );
     }
 
-    return <Diet onPrevious={() => setStep(2)} />;
+    return <Diet onPrevious={() => setStep(2)} onSubmit={handleSubmit} />;
 }
 
 export default Form;
