@@ -29,8 +29,8 @@ function Diet({ onPrevious, onSubmit }) {
             })
             .catch(() => {
                 setToastProps({
-                    title: 'Error',
-                    message: 'Error when contacting the server.',
+                    title: 'Erro',
+                    message: 'Erro ao contatar o servidor.',
                     show: true,
                     variant: 'danger',
                 });

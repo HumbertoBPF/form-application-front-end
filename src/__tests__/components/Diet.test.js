@@ -254,5 +254,5 @@ it('should display toast when getting an error from /getAlimentacao', async () =
 
     const toast = screen.getByTestId('toast');
     expect(toast).toBeInTheDocument();
-    expect(toast).toHaveTextContent('Error when contacting the server.');
+    expect(toast).toHaveTextContent('Erro ao contatar o servidor.');
 });

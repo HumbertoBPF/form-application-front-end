@@ -80,7 +80,7 @@ it('should fill all the form pages and successfully submit the form', () => {
 
     cy.getByTestId('toast').should(
         'include.text',
-        'The form was successfully submitted.'
+        'O formulário foi submetido com sucesso.'
     );
 });
 
@@ -106,6 +106,6 @@ it('should fill all the form pages and handle error when submitting the form', (
 
     cy.getByTestId('toast').should(
         'include.text',
-        'An error happened during form submission.'
+        'Um erro ocorreu durante a submissão do formulário.'
     );
 });

@@ -915,4 +915,63 @@ describe('validation', () => {
 
         expect(onNext).toBeCalledTimes(0);
     });
+
+    it('should require users to confirm the correctness of the data', async () => {
+        const onNext = jest.fn();
+
+        render(<PersonalData onNext={onNext} />);
+
+        const fullNameInput = screen.getByTestId('full-name-input');
+        await userEvent.type(fullNameInput, fullName);
+
+        const documentInput = screen.getByTestId('document-input');
+        await userEvent.type(documentInput, document);
+
+        const positionInput = screen.getByTestId('position-input');
+        await userEvent.type(positionInput, position);
+
+        const cityInput = screen.getByTestId('city-input');
+        await userEvent.type(cityInput, city);
+
+        const stateSelect = screen.getByTestId('state-select');
+        await userEvent.selectOptions(stateSelect, [state]);
+
+        const noCheck = screen.getByTestId('no-check');
+        await userEvent.click(noCheck);
+
+        const titularCheck = screen.getByTestId('titular-check');
+        await userEvent.click(titularCheck);
+
+        const phoneInput = screen.getByTestId('phone-input');
+        await userEvent.type(phoneInput, phone);
+
+        const emailInput = screen.getByTestId('email-input');
+        await userEvent.type(emailInput, email);
+
+        const birthDateInput = screen.getByTestId('birth-date-input');
+        await userEvent.type(birthDateInput, formatToAmericanDate(birthDate));
+
+        const maleCheck = screen.getByTestId('male-check');
+        await userEvent.click(maleCheck);
+
+        const weightInput = screen.getByTestId('weight-input');
+        await userEvent.type(weightInput, String(weight));
+
+        const heightInput = screen.getByTestId('height-input');
+        await userEvent.type(heightInput, String(height));
+
+        const doNotKnowCheck = screen.getByTestId('do-not-know-check');
+        await userEvent.click(doNotKnowCheck);
+
+        const submitButton = screen.getByTestId('submit-button');
+        await userEvent.click(submitButton);
+
+        expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Você deve confirmar que os dados estão corretos antes de prosseguir.'
+        );
+    });
 });

@@ -5,7 +5,7 @@ function Toast({ title, message, onClose, show, variant }) {
     return (
         <ToastContainer
             position="bottom-end"
-            className="m-3"
+            className="m-3 position-fixed"
             style={{ zIndex: 1 }}
         >
             <BootstrapToast

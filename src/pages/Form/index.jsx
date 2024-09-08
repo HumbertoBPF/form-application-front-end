@@ -25,16 +25,17 @@ function Form() {
         })
             .then(() => {
                 setToastProps({
-                    title: 'Form submit',
-                    message: 'The form was successfully submitted.',
+                    title: 'Submissão de formulário',
+                    message: 'O formulário foi submetido com sucesso.',
                     show: true,
                     variant: 'success',
                 });
             })
             .catch(() => {
                 setToastProps({
-                    title: 'Error',
-                    message: 'An error happened during form submission.',
+                    title: 'Erro',
+                    message:
+                        'Um erro ocorreu durante a submissão do formulário.',
                     show: true,
                     variant: 'danger',
                 });
