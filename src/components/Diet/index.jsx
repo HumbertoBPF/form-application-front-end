@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { getAlimentacao } from 'api/endpoints';
+import Toast from 'components/Toast';
 
 function Diet({ onPrevious, onSubmit }) {
     const [diet, setDiet] = useState({});
@@ -12,6 +13,13 @@ function Diet({ onPrevious, onSubmit }) {
     const [validated, setValidated] = useState(false);
     const [isInvalid, setIsInvalid] = useState(false);
 
+    const [toastProps, setToastProps] = useState({
+        title: '',
+        message: '',
+        show: false,
+        variant: 'success',
+    });
+
     useEffect(() => {
         getAlimentacao()
             .then((response) => {
@@ -20,7 +28,12 @@ function Diet({ onPrevious, onSubmit }) {
                 setType(Object.keys(data)[0]);
             })
             .catch(() => {
-                console.log('Error');
+                setToastProps({
+                    title: 'Error',
+                    message: 'Error when contacting the server.',
+                    show: true,
+                    variant: 'danger',
+                });
             });
     }, []);
 
@@ -65,63 +78,69 @@ function Diet({ onPrevious, onSubmit }) {
     };
 
     return (
-        <Form
-            noValidate
-            validated={validated}
-            onSubmit={handleSubmit}
-            className="p-3"
-        >
-            <Form.Group className="mb-3">
-                <Form.Label>
-                    <strong>Selecione seu tipo de alimentação</strong>
-                </Form.Label>
-                <Form.Select
-                    name="diet"
-                    value={type}
-                    onChange={onChange}
-                    aria-label="Diet"
-                    data-testid="diet-select"
-                >
-                    {Object.keys(diet).map((key) => (
-                        <option key={key} value={key}>
-                            {key}
-                        </option>
-                    ))}
-                </Form.Select>
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>
-                    <strong>
-                        Preencha os tipos de alimento que você consome
-                        diariamente:
-                    </strong>
-                </Form.Label>
-                {diet[type] &&
-                    diet[type].map((item, index) => (
-                        <Form.Check
-                            key={index}
-                            id={index}
-                            name="food"
-                            label={item}
-                            onChange={handleCheck}
-                            value={item}
-                            data-testid={`food-${index}`}
-                            isInvalid={isInvalid}
-                        />
-                    ))}
-            </Form.Group>
-            <Button className="mt-3" onClick={onPrevious} variant="light">
-                Anterior
-            </Button>
-            <Button
-                className="ms-3 mt-3"
-                variant="primary"
-                type="submit"
-                data-testid="submit-button"
+        <>
+            <Form
+                noValidate
+                validated={validated}
+                onSubmit={handleSubmit}
+                className="p-3"
             >
-                Enviar
-            </Button>
-        </Form>
+                <Form.Group className="mb-3">
+                    <Form.Label>
+                        <strong>Selecione seu tipo de alimentação</strong>
+                    </Form.Label>
+                    <Form.Select
+                        name="diet"
+                        value={type}
+                        onChange={onChange}
+                        aria-label="Diet"
+                        data-testid="diet-select"
+                    >
+                        {Object.keys(diet).map((key) => (
+                            <option key={key} value={key}>
+                                {key}
+                            </option>
+                        ))}
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>
+                        <strong>
+                            Preencha os tipos de alimento que você consome
+                            diariamente:
+                        </strong>
+                    </Form.Label>
+                    {diet[type] &&
+                        diet[type].map((item, index) => (
+                            <Form.Check
+                                key={index}
+                                id={index}
+                                name="food"
+                                label={item}
+                                onChange={handleCheck}
+                                value={item}
+                                data-testid={`food-${index}`}
+                                isInvalid={isInvalid}
+                            />
+                        ))}
+                </Form.Group>
+                <Button className="mt-3" onClick={onPrevious} variant="light">
+                    Anterior
+                </Button>
+                <Button
+                    className="ms-3 mt-3"
+                    variant="primary"
+                    type="submit"
+                    data-testid="submit-button"
+                >
+                    Enviar
+                </Button>
+            </Form>
+            <Toast
+                {...toastProps}
+                onClose={() => setToastProps({ ...toastProps, show: false })}
+            />
+        </>
     );
 }
 

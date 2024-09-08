@@ -229,3 +229,30 @@ it('should call onSubmit when users submit a valid form', async () => {
         options: ['Vegetais (legumes e verduras em geral)', 'Frutas'],
     });
 });
+
+it('should display toast when getting an error from /getAlimentacao', async () => {
+    const onPrevious = jest.fn();
+    const onSubmit = jest.fn();
+
+    getAlimentacao.mockImplementation(() => {
+        const error = new Error();
+
+        error.response = {
+            data: {
+                error: 'Error',
+            },
+        };
+
+        return Promise.reject(error);
+    });
+
+    await act(async () => {
+        render(<Diet onPrevious={onPrevious} onSubmit={onSubmit} />);
+    });
+
+    expect(getAlimentacao).toBeCalledTimes(1);
+
+    const toast = screen.getByTestId('toast');
+    expect(toast).toBeInTheDocument();
+    expect(toast).toHaveTextContent('Error when contacting the server.');
+});
