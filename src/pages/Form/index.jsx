@@ -1,9 +1,10 @@
-import api from 'api/http';
+import { submitForm } from 'api/endpoints';
 import Diet from 'components/Diet';
 import Diseases from 'components/Diseases';
 import PersonalData from 'components/PersonalData';
 import Toast from 'components/Toast';
 import { useState } from 'react';
+import { Container } from 'react-bootstrap';
 
 function Form() {
     const [personalData, setPersonalData] = useState({});
@@ -17,12 +18,11 @@ function Form() {
     });
 
     const handleSubmit = (data) => {
-        api()
-            .post('/submitFormulario', {
-                page_1: personalData,
-                page_2: diseasesData,
-                page_3: data,
-            })
+        submitForm({
+            page_1: personalData,
+            page_2: diseasesData,
+            page_3: data,
+        })
             .then(() => {
                 setToastProps({
                     title: 'Form submit',
@@ -71,13 +71,13 @@ function Form() {
     };
 
     return (
-        <>
+        <Container>
             {renderFormPages()}
             <Toast
                 {...toastProps}
                 onClose={() => setToastProps({ ...toastProps, show: false })}
             />
-        </>
+        </Container>
     );
 }
 
