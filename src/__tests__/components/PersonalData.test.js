@@ -84,7 +84,7 @@ it('should call onNext when form is valid without pressure values', async () => 
         height: String(height),
         min_pressure: '',
         max_pressure: '',
-        know_pressure: true,
+        know_pressure: false,
     });
 });
 
@@ -158,7 +158,7 @@ it('should call onNext when form is valid with pressure values', async () => {
         height: String(height),
         min_pressure: '1',
         max_pressure: '1',
-        know_pressure: false,
+        know_pressure: true,
     });
 });
 

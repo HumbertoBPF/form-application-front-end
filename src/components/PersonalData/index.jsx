@@ -5,8 +5,6 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 function PersonalData({ onNext }) {
-    const [validated, setValidated] = useState();
-
     const [fullName, setFullName] = useState('');
     const [identifier, setIdentifier] = useState('');
     const [position, setPosition] = useState('');
@@ -22,7 +20,9 @@ function PersonalData({ onNext }) {
     const [height, setHeight] = useState('');
     const [minPressure, setMinPressure] = useState('');
     const [maxPressure, setMaxPressure] = useState('');
-    const [knowPressure, setKnowPressure] = useState(false);
+    const [knowPressure, setKnowPressure] = useState(true);
+
+    const [validated, setValidated] = useState();
 
     const onSubmit = (event) => {
         event.preventDefault();
@@ -328,6 +328,8 @@ function PersonalData({ onNext }) {
                                         setMaxPressure(event.target.value)
                                     }
                                     value={maxPressure}
+                                    required
+                                    disabled={!knowPressure}
                                     data-testid="max-pressure-select"
                                 >
                                     <option value="">- Nenhum -</option>
@@ -353,6 +355,8 @@ function PersonalData({ onNext }) {
                                         setMinPressure(event.target.value)
                                     }
                                     value={minPressure}
+                                    required
+                                    disabled={!knowPressure}
                                     data-testid="min-pressure-select"
                                 >
                                     <option value="">- Nenhum -</option>
@@ -372,7 +376,7 @@ function PersonalData({ onNext }) {
                                 id="do-not-know"
                                 name="doNotKnow"
                                 onChange={() => setKnowPressure(!knowPressure)}
-                                value={knowPressure}
+                                checked={!knowPressure}
                                 label="Não sei"
                                 data-testid="do-not-know-check"
                             />
