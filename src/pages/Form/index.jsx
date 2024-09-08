@@ -36,7 +36,7 @@ function Form() {
                     title: 'Error',
                     message: 'An error happened during form submission.',
                     show: true,
-                    variant: 'error',
+                    variant: 'danger',
                 });
             });
     };
