@@ -230,6 +230,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the heart problem disease', async () => {
@@ -281,6 +287,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the high blood pressure disease', async () => {
@@ -332,6 +344,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the asma disease', async () => {
@@ -383,6 +401,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the depression disease', async () => {
@@ -434,6 +458,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the anxiety disease', async () => {
@@ -485,6 +515,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the high colesterol disease', async () => {
@@ -536,6 +572,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the back pain disease', async () => {
@@ -587,6 +629,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the articulation pain disease', async () => {
@@ -638,6 +686,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the headache disease', async () => {
@@ -689,6 +743,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the cancer disease', async () => {
@@ -740,6 +800,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require an answer for the STD disease', async () => {
@@ -791,5 +857,11 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 });

@@ -60,6 +60,12 @@ function Diet({ onPrevious, onSubmit }) {
 
         if (options.length === 0) {
             setIsInvalid(true);
+            setToastProps({
+                title: 'Erro',
+                message: 'Verifique os erros nos campos marcados.',
+                show: true,
+                variant: 'danger',
+            });
             return;
         }
 
@@ -68,6 +74,12 @@ function Diet({ onPrevious, onSubmit }) {
         const form = event.currentTarget;
 
         if (form.checkValidity() === false) {
+            setToastProps({
+                title: 'Erro',
+                message: 'Verifique os erros nos campos marcados.',
+                show: true,
+                variant: 'danger',
+            });
             return;
         }
 

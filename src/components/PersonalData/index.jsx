@@ -60,6 +60,12 @@ function PersonalData({ initialData, onNext }) {
         setValidated(true);
 
         if (form.checkValidity() === false) {
+            setToastProps({
+                title: 'Erro',
+                message: 'Verifique os erros nos campos marcados.',
+                show: true,
+                variant: 'danger',
+            });
             return;
         }
 

@@ -211,6 +211,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require identifier', async () => {
@@ -261,6 +267,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require position', async () => {
@@ -311,6 +323,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require city', async () => {
@@ -361,6 +379,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require state', async () => {
@@ -411,6 +435,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require phone', async () => {
@@ -461,6 +491,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require email', async () => {
@@ -511,6 +547,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should verify email format', async () => {
@@ -564,6 +606,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require birth date', async () => {
@@ -614,6 +662,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require weight', async () => {
@@ -664,6 +718,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require height', async () => {
@@ -714,6 +774,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it("should require min and max pressure if the user doesn't check the don't know checkbox", async () => {
@@ -764,6 +830,12 @@ describe('validation', () => {
         await userEvent.click(submitButton);
 
         expect(onNext).toBeCalledTimes(0);
+
+        const toast = screen.getByTestId('toast');
+        expect(toast).toBeInTheDocument();
+        expect(toast).toHaveTextContent(
+            'Verifique os erros nos campos marcados.'
+        );
     });
 
     it('should require users to confirm the correctness of the data', async () => {

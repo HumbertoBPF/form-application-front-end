@@ -201,6 +201,10 @@ it('should require users to select at least one option', async () => {
     await userEvent.click(submitButton);
 
     expect(onSubmit).toBeCalledTimes(0);
+
+    const toast = screen.getByTestId('toast');
+    expect(toast).toBeInTheDocument();
+    expect(toast).toHaveTextContent('Verifique os erros nos campos marcados.');
 });
 
 it('should call onSubmit when users submit a valid form', async () => {
