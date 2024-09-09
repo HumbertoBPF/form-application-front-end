@@ -73,7 +73,9 @@ it('should call onNext when form is valid without remarks', async () => {
     const onPrevious = jest.fn();
     const onNext = jest.fn();
 
-    render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+    render(
+        <Diseases initialData={{}} onPrevious={onPrevious} onNext={onNext} />
+    );
 
     const diabetes1Check = screen.getByTestId('1-1-check');
     await userEvent.click(diabetes1Check);
@@ -125,7 +127,9 @@ it('should call onNext when form is valid with remarks', async () => {
     const onPrevious = jest.fn();
     const onNext = jest.fn();
 
-    render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+    render(
+        <Diseases initialData={{}} onPrevious={onPrevious} onNext={onNext} />
+    );
 
     const diabetes1Check = screen.getByTestId('1-1-check');
     await userEvent.click(diabetes1Check);
@@ -181,7 +185,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const heartProblems2Check = screen.getByTestId('2-2-check');
         await userEvent.click(heartProblems2Check);
@@ -226,7 +236,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);
@@ -271,7 +287,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);
@@ -316,7 +338,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);
@@ -361,7 +389,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);
@@ -406,7 +440,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);
@@ -451,7 +491,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);
@@ -496,7 +542,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);
@@ -541,7 +593,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);
@@ -586,7 +644,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);
@@ -631,7 +695,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);
@@ -676,7 +746,13 @@ describe('validation', () => {
         const onPrevious = jest.fn();
         const onNext = jest.fn();
 
-        render(<Diseases onPrevious={onPrevious} onNext={onNext} />);
+        render(
+            <Diseases
+                initialData={{}}
+                onPrevious={onPrevious}
+                onNext={onNext}
+            />
+        );
 
         const diabetes1Check = screen.getByTestId('1-1-check');
         await userEvent.click(diabetes1Check);

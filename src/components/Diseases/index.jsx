@@ -3,11 +3,16 @@ import diseases from 'common/diseases.json';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-function Diseases({ onPrevious, onNext }) {
+function Diseases({ initialData, onPrevious, onNext }) {
     const [diseasesData, setDiseasesData] = useState(
-        diseases.map((item) => ({ id: item.id, name: item.name, choices: [] }))
+        initialData.diseases ||
+            diseases.map((item) => ({
+                id: item.id,
+                name: item.name,
+                choices: [],
+            }))
     );
-    const [remarks, setRemarks] = useState('');
+    const [remarks, setRemarks] = useState(initialData.remarks || '');
 
     const [validated, setValidated] = useState(false);
 
@@ -81,6 +86,19 @@ function Diseases({ onPrevious, onNext }) {
                                                         )
                                                     }
                                                     value={option.id}
+                                                    checked={diseasesData.some(
+                                                        (item) => {
+                                                            return (
+                                                                item.id ===
+                                                                    disease.id &&
+                                                                item.choices.includes(
+                                                                    String(
+                                                                        option.id
+                                                                    )
+                                                                )
+                                                            );
+                                                        }
+                                                    )}
                                                     required
                                                     type="radio"
                                                     data-testid={`${disease.id}-${option.id}-check`}
@@ -125,6 +143,7 @@ function Diseases({ onPrevious, onNext }) {
 }
 
 Diseases.propTypes = {
+    initialData: PropTypes.object.isRequired,
     onPrevious: PropTypes.func.isRequired,
     onNext: PropTypes.func.isRequired,
 };

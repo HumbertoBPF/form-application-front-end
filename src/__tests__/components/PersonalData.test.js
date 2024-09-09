@@ -20,7 +20,7 @@ const height = faker.number.int({ min: 150, max: 200 });
 it('should call onNext when form is valid without pressure values', async () => {
     const onNext = jest.fn();
 
-    render(<PersonalData onNext={onNext} />);
+    render(<PersonalData initialData={{}} onNext={onNext} />);
 
     const fullNameInput = screen.getByTestId('full-name-input');
     await userEvent.type(fullNameInput, fullName);
@@ -91,7 +91,7 @@ it('should call onNext when form is valid without pressure values', async () => 
 it('should call onNext when form is valid with pressure values', async () => {
     const onNext = jest.fn();
 
-    render(<PersonalData onNext={onNext} />);
+    render(<PersonalData initialData={{}} onNext={onNext} />);
 
     const fullNameInput = screen.getByTestId('full-name-input');
     await userEvent.type(fullNameInput, fullName);
@@ -166,7 +166,7 @@ describe('validation', () => {
     it('should require full name', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const documentInput = screen.getByTestId('document-input');
         await userEvent.type(documentInput, document);
@@ -216,7 +216,7 @@ describe('validation', () => {
     it('should require identifier', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -266,7 +266,7 @@ describe('validation', () => {
     it('should require position', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -316,7 +316,7 @@ describe('validation', () => {
     it('should require city', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -366,7 +366,7 @@ describe('validation', () => {
     it('should require state', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -385,106 +385,6 @@ describe('validation', () => {
 
         const titularCheck = screen.getByTestId('titular-check');
         await userEvent.click(titularCheck);
-
-        const phoneInput = screen.getByTestId('phone-input');
-        await userEvent.type(phoneInput, phone);
-
-        const emailInput = screen.getByTestId('email-input');
-        await userEvent.type(emailInput, email);
-
-        const birthDateInput = screen.getByTestId('birth-date-input');
-        await userEvent.type(birthDateInput, formatToAmericanDate(birthDate));
-
-        const maleCheck = screen.getByTestId('male-check');
-        await userEvent.click(maleCheck);
-
-        const weightInput = screen.getByTestId('weight-input');
-        await userEvent.type(weightInput, String(weight));
-
-        const heightInput = screen.getByTestId('height-input');
-        await userEvent.type(heightInput, String(height));
-
-        const doNotKnowCheck = screen.getByTestId('do-not-know-check');
-        await userEvent.click(doNotKnowCheck);
-
-        const submitButton = screen.getByTestId('submit-button');
-        await userEvent.click(submitButton);
-
-        expect(onNext).toBeCalledTimes(0);
-    });
-
-    it('should require confirmation about data correctness', async () => {
-        const onNext = jest.fn();
-
-        render(<PersonalData onNext={onNext} />);
-
-        const fullNameInput = screen.getByTestId('full-name-input');
-        await userEvent.type(fullNameInput, fullName);
-
-        const documentInput = screen.getByTestId('document-input');
-        await userEvent.type(documentInput, document);
-
-        const positionInput = screen.getByTestId('position-input');
-        await userEvent.type(positionInput, position);
-
-        const cityInput = screen.getByTestId('city-input');
-        await userEvent.type(cityInput, city);
-
-        const stateSelect = screen.getByTestId('state-select');
-        await userEvent.selectOptions(stateSelect, [state]);
-
-        const titularCheck = screen.getByTestId('titular-check');
-        await userEvent.click(titularCheck);
-
-        const phoneInput = screen.getByTestId('phone-input');
-        await userEvent.type(phoneInput, phone);
-
-        const emailInput = screen.getByTestId('email-input');
-        await userEvent.type(emailInput, email);
-
-        const birthDateInput = screen.getByTestId('birth-date-input');
-        await userEvent.type(birthDateInput, formatToAmericanDate(birthDate));
-
-        const maleCheck = screen.getByTestId('male-check');
-        await userEvent.click(maleCheck);
-
-        const weightInput = screen.getByTestId('weight-input');
-        await userEvent.type(weightInput, String(weight));
-
-        const heightInput = screen.getByTestId('height-input');
-        await userEvent.type(heightInput, String(height));
-
-        const doNotKnowCheck = screen.getByTestId('do-not-know-check');
-        await userEvent.click(doNotKnowCheck);
-
-        const submitButton = screen.getByTestId('submit-button');
-        await userEvent.click(submitButton);
-
-        expect(onNext).toBeCalledTimes(0);
-    });
-
-    it('should require titularity', async () => {
-        const onNext = jest.fn();
-
-        render(<PersonalData onNext={onNext} />);
-
-        const fullNameInput = screen.getByTestId('full-name-input');
-        await userEvent.type(fullNameInput, fullName);
-
-        const documentInput = screen.getByTestId('document-input');
-        await userEvent.type(documentInput, document);
-
-        const positionInput = screen.getByTestId('position-input');
-        await userEvent.type(positionInput, position);
-
-        const cityInput = screen.getByTestId('city-input');
-        await userEvent.type(cityInput, city);
-
-        const stateSelect = screen.getByTestId('state-select');
-        await userEvent.selectOptions(stateSelect, [state]);
-
-        const yesCheck = screen.getByTestId('yes-check');
-        await userEvent.click(yesCheck);
 
         const phoneInput = screen.getByTestId('phone-input');
         await userEvent.type(phoneInput, phone);
@@ -516,7 +416,7 @@ describe('validation', () => {
     it('should require phone', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -566,7 +466,7 @@ describe('validation', () => {
     it('should require email', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -616,7 +516,7 @@ describe('validation', () => {
     it('should verify email format', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -669,7 +569,7 @@ describe('validation', () => {
     it('should require birth date', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -716,60 +616,10 @@ describe('validation', () => {
         expect(onNext).toBeCalledTimes(0);
     });
 
-    it('should require gender', async () => {
-        const onNext = jest.fn();
-
-        render(<PersonalData onNext={onNext} />);
-
-        const fullNameInput = screen.getByTestId('full-name-input');
-        await userEvent.type(fullNameInput, fullName);
-
-        const documentInput = screen.getByTestId('document-input');
-        await userEvent.type(documentInput, document);
-
-        const positionInput = screen.getByTestId('position-input');
-        await userEvent.type(positionInput, position);
-
-        const cityInput = screen.getByTestId('city-input');
-        await userEvent.type(cityInput, city);
-
-        const stateSelect = screen.getByTestId('state-select');
-        await userEvent.selectOptions(stateSelect, [state]);
-
-        const yesCheck = screen.getByTestId('yes-check');
-        await userEvent.click(yesCheck);
-
-        const titularCheck = screen.getByTestId('titular-check');
-        await userEvent.click(titularCheck);
-
-        const phoneInput = screen.getByTestId('phone-input');
-        await userEvent.type(phoneInput, phone);
-
-        const emailInput = screen.getByTestId('email-input');
-        await userEvent.type(emailInput, email);
-
-        const birthDateInput = screen.getByTestId('birth-date-input');
-        await userEvent.type(birthDateInput, formatToAmericanDate(birthDate));
-
-        const weightInput = screen.getByTestId('weight-input');
-        await userEvent.type(weightInput, String(weight));
-
-        const heightInput = screen.getByTestId('height-input');
-        await userEvent.type(heightInput, String(height));
-
-        const doNotKnowCheck = screen.getByTestId('do-not-know-check');
-        await userEvent.click(doNotKnowCheck);
-
-        const submitButton = screen.getByTestId('submit-button');
-        await userEvent.click(submitButton);
-
-        expect(onNext).toBeCalledTimes(0);
-    });
-
     it('should require weight', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -819,7 +669,7 @@ describe('validation', () => {
     it('should require height', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -869,7 +719,7 @@ describe('validation', () => {
     it("should require min and max pressure if the user doesn't check the don't know checkbox", async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);
@@ -919,7 +769,7 @@ describe('validation', () => {
     it('should require users to confirm the correctness of the data', async () => {
         const onNext = jest.fn();
 
-        render(<PersonalData onNext={onNext} />);
+        render(<PersonalData initialData={{}} onNext={onNext} />);
 
         const fullNameInput = screen.getByTestId('full-name-input');
         await userEvent.type(fullNameInput, fullName);

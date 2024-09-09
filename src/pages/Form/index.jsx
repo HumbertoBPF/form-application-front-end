@@ -46,6 +46,7 @@ function Form() {
         if (step === 1) {
             return (
                 <PersonalData
+                    initialData={personalData}
                     onNext={(data) => {
                         setStep(2);
                         setPersonalData(data);
@@ -57,12 +58,13 @@ function Form() {
         if (step === 2) {
             return (
                 <Diseases
-                    onPrevious={(data) => {
+                    initialData={diseasesData}
+                    onPrevious={() => {
                         setStep(1);
-                        setDiseasesData(data);
                     }}
-                    onNext={() => {
+                    onNext={(data) => {
                         setStep(3);
+                        setDiseasesData(data);
                     }}
                 />
             );

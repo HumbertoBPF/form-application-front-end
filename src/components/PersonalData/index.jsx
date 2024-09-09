@@ -5,23 +5,31 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Toast from 'components/Toast';
 
-function PersonalData({ onNext }) {
-    const [fullName, setFullName] = useState('');
-    const [identifier, setIdentifier] = useState('');
-    const [position, setPosition] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [isCorrect, setIsCorrect] = useState(true);
-    const [titularity, setTitularity] = useState('titular');
-    const [phone, setPhone] = useState('');
-    const [email, setEmail] = useState('');
-    const [birthDate, setBirthDate] = useState('');
-    const [gender, setGender] = useState('male');
-    const [weight, setWeight] = useState('');
-    const [height, setHeight] = useState('');
-    const [minPressure, setMinPressure] = useState('');
-    const [maxPressure, setMaxPressure] = useState('');
-    const [knowPressure, setKnowPressure] = useState(true);
+function PersonalData({ initialData, onNext }) {
+    const [fullName, setFullName] = useState(initialData.full_name || '');
+    const [identifier, setIdentifier] = useState(initialData.national_id || '');
+    const [position, setPosition] = useState(initialData.position || '');
+    const [city, setCity] = useState(initialData.city || '');
+    const [state, setState] = useState(initialData.state || '');
+    const [isCorrect, setIsCorrect] = useState(initialData.is_correct || true);
+    const [titularity, setTitularity] = useState(
+        initialData.titularity || 'titular'
+    );
+    const [phone, setPhone] = useState(initialData.phone || '');
+    const [email, setEmail] = useState(initialData.email || '');
+    const [birthDate, setBirthDate] = useState(initialData.birth_date || '');
+    const [gender, setGender] = useState(initialData.gender || 'male');
+    const [weight, setWeight] = useState(initialData.weight || '');
+    const [height, setHeight] = useState(initialData.height || '');
+    const [minPressure, setMinPressure] = useState(
+        initialData.min_pressure || ''
+    );
+    const [maxPressure, setMaxPressure] = useState(
+        initialData.max_pressure || ''
+    );
+    const [knowPressure, setKnowPressure] = useState(
+        initialData.know_pressure || true
+    );
 
     const [validated, setValidated] = useState();
 
@@ -180,6 +188,7 @@ function PersonalData({ onNext }) {
                         value="yes"
                         label="Sim"
                         required
+                        checked={isCorrect}
                         data-testid="yes-check"
                     />
 
@@ -193,6 +202,7 @@ function PersonalData({ onNext }) {
                         value="no"
                         label="Não"
                         required
+                        checked={!isCorrect}
                         data-testid="no-check"
                     />
                 </Form.Group>
@@ -207,6 +217,7 @@ function PersonalData({ onNext }) {
                         value="titular"
                         label="Titular"
                         required
+                        checked={titularity === 'titular'}
                         data-testid="titular-check"
                     />
 
@@ -218,6 +229,7 @@ function PersonalData({ onNext }) {
                         value="dependant"
                         label="Dependente"
                         required
+                        checked={titularity === 'dependant'}
                         data-testid="dependent-check"
                     />
                 </Form.Group>
@@ -276,6 +288,7 @@ function PersonalData({ onNext }) {
                         onChange={(event) => setGender(event.target.value)}
                         value="female"
                         label="Feminino"
+                        checked={gender === 'female'}
                         required
                         data-testid="female-check"
                     />
@@ -287,6 +300,7 @@ function PersonalData({ onNext }) {
                         onChange={(event) => setGender(event.target.value)}
                         value="male"
                         label="Masculino"
+                        checked={gender === 'male'}
                         required
                         data-testid="male-check"
                     />
@@ -426,6 +440,7 @@ function PersonalData({ onNext }) {
 }
 
 PersonalData.propTypes = {
+    initialData: PropTypes.object.isRequired,
     onNext: PropTypes.func.isRequired,
 };
 
