@@ -22,10 +22,11 @@
         ]
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "react-scripts -r @cypress/instrument-cra start",
         "build": "react-scripts build",
         "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "eject": "react-scripts eject",
+        "test:coverage": "npm run test -- --coverage --watchAll=false --coverageDirectory=jest-coverage"
     },
     "eslintConfig": {
         "extends": [
@@ -46,6 +47,8 @@
         ]
     },
     "devDependencies": {
+        "@cypress/code-coverage": "^3.12.47",
+        "@cypress/instrument-cra": "^1.4.0",
         "@eslint/js": "^9.10.0",
         "@faker-js/faker": "^9.0.0",
         "cypress": "^13.14.2",
