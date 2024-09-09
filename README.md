@@ -9,6 +9,7 @@ The following packages were used to implement this React project:
 -   prop-types: types validation
 -   Jest, React Testing Library, and Cypress: testing
 -   prettier and eslint: static testing and linting (defining rules concerning formatting)
+-   @cypress/code-coverage and @cypress/instrument-cra: generation of test coverage reports
 -   faker: mock test data
 
 # Installation
@@ -31,5 +32,5 @@ I defined two group of tests:
 -   Unit tests: these tests use Jest and React Testing Library and can be run using the command "npm run test:coverage".
 -   Integration tests: these tests use Cypress and can be run using the command "npx cypress run".
 
-In both cases, we get test coverage reports, which can be found in the folders jest-coverage and coverage folders under 
+In both cases, we get test coverage reports, which can be found in the folders jest-coverage and coverage folders under
 the files lcov-report/index.html.
